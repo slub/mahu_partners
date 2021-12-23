@@ -1,0 +1,1 @@
+{namespace s=Subugoe\Find\ViewHelpers}<s:format.json data="{_all}"/>

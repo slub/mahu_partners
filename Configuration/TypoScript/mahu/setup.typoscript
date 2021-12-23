@@ -1,0 +1,78 @@
+##
+## mahu extension settings
+##
+plugin.tx_mahupartners.settings {
+	# indicates whether logos of companies / institutes should be displayed on the Landing Page and on the Partner Page
+	showLogos = true
+	# the prefix used for URL generation of "show materials of parnter XY" and "show corresponding materials" links   
+	prefix = tx_mahupartners_mahupartners
+	
+	imageUpload {
+		# the parent path of user folders
+		path = /user_upload/
+		# the storage in which the defined path exists
+		storage = 1
+		# the root site's URL, e.g. https://www.example.org/
+		#siteURL = 
+	}
+	
+	dateFormat = d.m.Y H:i
+	
+	paging {
+	    perPage = 20
+        maximumPerPage = 1000
+        detailPagePaging = 1
+		menu {
+			0 = 5
+			1 = 10
+			2 = 20
+			3 = 50
+			4 = 100
+		}
+	}
+	
+	# define sort criteria
+	sort {
+     	0 {
+			id = nameAsc
+			sortCriteria = name asc
+    	}
+    	1 {
+			id = nameDesc
+			sortCriteria = name desc
+    	}
+	}
+	
+	# sort options
+	sortOptions {
+		menu {
+			0 = nameAsc
+			1 = nameDesc
+		}
+		selected = nameAsc
+	}
+	
+	# email notifications configuration
+	notification {
+		add {
+			enabled = 0
+		}
+		edit {
+			enabled = 0
+		}
+		fileadd {
+			enabled = 0
+		}
+		fileremove {
+			enabled = 0
+		}
+
+	}
+	
+	# configure the company list
+	companylist {
+		number = 6
+		# valid modes: random, latest
+		mode = random
+	}
+}

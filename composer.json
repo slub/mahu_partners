@@ -1,0 +1,34 @@
+{
+	"name" : "slub/mahu-partners",
+	"description" : "Material Hub Frontend partners extension",
+	"version" : "0.9.6",
+	"type" : "typo3-cms-extension",
+	"keywords" : [
+		"TYPO3 CMS"
+	],
+	"license": "GPL-2.0-or-later",
+	"authors" : [{
+			"name" : "Carsten Radeck",
+			"email" : "carsten.radeck@slub-dresden.de",
+			"role" : "Developer"
+		}
+	],
+	"require" : {
+		"typo3/cms-core" : ">=9.5,<=10.4.99",
+		"fluidtypo3/vhs" : ">6.0",
+		"symfony/intl": ">=5.0"
+	},
+	"replace" : {
+		"typo3-ter/mahu-partners" : "*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Slub\\MahuPartners\\" : "Classes/"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "mahu_partners"
+		}
+	}
+}

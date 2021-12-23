@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-08T09:17:01Z" product-name="mahu_partners">
+		<header/>
+		<body>
+			<trans-unit id="surname.description">
+				<source>The person's surname</source>
+			</trans-unit>
+			<trans-unit id="familyname.description">
+				<source>The person's family name</source>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>The person's title</source>
+			</trans-unit>
+			<trans-unit id="position.description">
+				<source>Position in the company or institute</source>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<source>phone</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>email</source>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<source>fax</source>
+			</trans-unit>
+			<trans-unit id="material_classes.description">
+				<source>Material classes for which this is the main contact (semicolon-separated enumeration)</source>
+			</trans-unit>
+			<trans-unit id="accounts.description">
+				<source>Social network accounts of the contact person</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

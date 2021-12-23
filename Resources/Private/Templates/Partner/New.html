@@ -1,0 +1,350 @@
+{namespace m=Slub\MahuPartners\ViewHelpers}
+{namespace s=Subugoe\Find\ViewHelpers}
+
+<f:layout name="Default" />
+<f:comment>
+	Template for a basic Detail view of all fields in the document.
+
+	Sets up the page with its title, CSS, JavaScript, the search form and pager,
+	uses the field configured as a heading and creates
+	a definition list of all field contents.
+
+	This can be a good starting point for refining the detail view for your
+	data model.
+</f:comment>
+
+<f:section name="Main">
+
+<f:if condition="{showForm}">
+<f:then>
+	<s:page.linkCSS file="EXT:mahu_frontend/Resources/Public/Css/chosen.jquery.min.css"/>
+	<m:script file="EXT:mahu_frontend/Resources/Public/JavaScript/libs/chosen.jquery.min.js" name="jQueryChosen"/>
+	<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/AbstractPage.js" name="ppage"/>
+	<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/EditPartnerPage.js" name="ppage"/>
+	
+	<f:if condition="{f:cObject(typoscriptObjectPath:'lib.currentLang')}=='de'">
+		<f:then>
+			<m:script name="de.js" file="EXT:mahu_partners/Resources/Public/JavaScript/localization/de.js"/>
+				
+			<script><f:format.raw>mahupartners.researchInstitutes = <s:format.json data="{settings.researchInstitutes.de}"/></f:format.raw>
+			</script>
+		</f:then>
+		<f:else>
+			<m:script name="en.js" file="EXT:mahu_partners/Resources/Public/JavaScript/localization/en.js"/>
+				
+			<script><f:format.raw>mahupartners.researchInstitutes = <s:format.json data="{settings.researchInstitutes.en}"/></f:format.raw>
+			</script>
+		</f:else>
+	</f:if>
+	<script>
+		$(document).ready(function(){
+			let page = new mahupartners.EditPartnerPage();
+			page.render();
+			page.addListeners();
+		});
+	</script>
+
+
+	<article class="detail partnerPageContent" data-cuid="c{config.uid}">
+
+		<f:form name="c{config.uid}-form"
+			method="post"
+			controller="Partner"
+			action="new"
+			enctype="multipart/form-data"
+			absolute="1"
+			class="editform">
+
+			<h2><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.base"/></h2>
+
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-type"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.type"/> <span class="required">*</span></label>
+				<div class="input">
+					<select class=" form-control" required="required"
+						id="c{config.uid}-form-type"
+						name="tx_mahupartners_mahupartners[company][type]">
+						<option></option>
+						<option value="1"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.type.1"/></option>
+						<option value="2"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.type.2"/></option>
+					</select>
+				</div>
+			</div>
+			
+			<f:if condition="{company.type}==2"><f:then>
+			<div id="researchDetails">
+			</f:then><f:else>
+			<div id="researchDetails" style="display:none">
+			</f:else></f:if>
+				<div class="form-group">
+					<label class="control-label" for="c{config.uid}-form-superordinate"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.superordinate"/></label>
+					<div class="input">
+						<f:if condition="{f:cObject(typoscriptObjectPath:'lib.currentLang')}=='de'">
+							<f:then>
+								<v:variable.set name="institutes" value="{settings.researchInstitutes.de}" />
+							</f:then>
+							<f:else>
+								<v:variable.set name="institutes" value="{settings.researchInstitutes.en}" />							
+							</f:else>
+						</f:if>
+						<f:form.select
+							id="c{config.uid}-form-superordinate"
+							class="form-control chosen-container"
+							name="company[superordinate]"
+							options="{institutes}"
+							additionalAttributes="{
+								data-placeholder:'{f:translate(key:\'LLL:EXT:mahu_frontend/Resources/Private/Language/locallang.xml:selectAnOption\')}'
+							}"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-name"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.name.1"/> <span class="required">*</span></label>
+				<div class="input">
+					<input required="required"
+						class=" form-control" id="c{config.uid}-form-name"
+						type="text"
+						maxlength="200"
+						name="tx_mahupartners_mahupartners[company][name]"
+						value="">
+					<span class="help-block"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.name.help"/></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-description"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.description"/></label>
+				<div class="input">
+					<textarea class="xxlarge form-control"
+						id="c{config.uid}-form-description"
+						name="tx_mahupartners_mahupartners[company][description]"></textarea>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-disclaimer"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.disclaimer"/></label>
+				<div class="input">
+					<textarea class="xxlarge form-control"
+						id="c{config.uid}-form-disclaimer"
+						name="tx_mahupartners_mahupartners[company][disclaimer]"></textarea>
+					<span class="help-block"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.disclaimer.help"/></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-www"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.www"/>
+					<span class="required">*</span>
+				</label>
+				<div class="input">
+					<input required="required"
+						class=" form-control" id="c{config.uid}-form-www"
+						type="url"
+						name="tx_mahupartners_mahupartners[company][www]"
+						value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-logo"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.logo"/></label>
+				<div class="input">
+					<span><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.logo.option1"/></span>
+					<p>
+						<input class="form-control"
+							id="c{config.uid}-form-logo" type="url"
+							name="tx_mahupartners_mahupartners[company][logo]"
+							value="{company.logo}">
+					</p>
+					
+					<div>
+						<span><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.logo.option2"/></span> 
+					    <input type="hidden" name="MAX_FILE_SIZE" value="1024000" />
+				   		<p><input name="logofile" type="file" accept="image/png, image/jpeg, image/gif" /></p> 
+					</div>
+				</div>
+			</div>
+
+			<div id="companyDetails" style="display:none">
+			<div class="form-group">
+				<label class="control-label"
+					for="c{config.uid}-form-formOfCompany"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.formOfCompany"/></label>
+				<div class="input">
+					<input class=" form-control"
+						id="c{config.uid}-form-formOfCompany" type="text"
+						name="tx_mahupartners_mahupartners[company][formOfCompany]"
+						value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label"
+					for="c{config.uid}-form-businessArea"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.businessArea"/></label>
+
+				<div class="input">
+					<input class=" form-control"
+						id="c{config.uid}-form-businessArea" type="text"
+						name="tx_mahupartners_mahupartners[company][businessArea]"
+						value="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label"
+					for="c{config.uid}-form-numberOfEmployees"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.numberOfEmployees"/></label>
+
+				<div class="input">
+					<input step="1" class=" form-control"
+						id="c{config.uid}-form-numberOfEmployees"
+						type="number"
+						name="tx_mahupartners_mahupartners[company][numberOfEmployees]"
+						value="">
+				</div>
+			</div>
+			</div>
+
+
+			<fieldset id="address" class="form-group">
+				<legend><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.address"/></legend>
+
+				<div class="form-group">
+					<label class="control-label" for="c{config.uid}-form-street"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.address.street"/></label>
+					<div class="input">
+						<input class=" form-control"
+							id="c{config.uid}-form-street" type="text"
+							name="tx_mahupartners_mahupartners[company][street]"
+							value="">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="c{config.uid}-form-zip"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.address.zip"/></label>
+					<div class="input">
+						<input class=" form-control"
+							id="c{config.uid}-form-zip" type="text"
+							name="tx_mahupartners_mahupartners[company][zip]"
+							value="">
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="c{config.uid}-form-city"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.address.city"/></label>
+					<div class="input">
+						<input class=" form-control"
+							id="c{config.uid}-form-city" type="text"
+							name="tx_mahupartners_mahupartners[company][city]"
+							value="">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="c{config.uid}-form-country"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.address.country"/></label>
+					<div class="input">
+						<f:form.select
+								id="c{config.uid}-form-country"
+								class="form-control"
+								name="company[country]"
+								options="{m:GetCountryCodes()}"
+								value=""
+							/>
+					</div>
+				</div>
+			</fieldset>
+			
+			
+			<h2><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.contacts"/></h2>
+			
+			<div class="btn-group" role="group">
+				<a class="addContactBtn" title="Hinzufügen">
+					<i class="fas fa-plus-circle smallicon" aria-hidden="true"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.add"/>
+				</a>
+			</div>
+			
+			<div id="contactFieldsets"></div>
+			
+			
+			<h2><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.expertises"/></h2>
+			
+			<div class="form-group">
+				<label class="control-label" for="c{config.uid}-form-services"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.services"/></label>
+				<div class="input">
+					<input class=" form-control" 
+						id="c{config.uid}-form-services" type="text" 
+						name="tx_mahupartners_mahupartners[company][services]" value="">
+					<span class="help-block"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.services.help"/></span>
+				</div>
+			</div>
+			
+			<div class="btn-group" role="group">
+				<a class="addExpertiseBtn" title="Hinzufügen">
+					<i class="fas fa-plus-circle smallicon" aria-hidden="true"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.add"/>
+				</a>
+			</div>
+			
+			<div id="expertisesFieldsets"></div>
+
+			<f:form.submit name="mySubmit" value="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.submit')}" class="btn btn-primary" />
+			<button id="abort" class="btn btn-primary" data-url="{f:uri.page(pageUid='{settings.dataproviderPageID}')}"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:abort"/></button>
+			
+		</f:form>
+		<div style="display:none">
+			<f:form.select
+				id="c{config.uid}-form-expertises_template"
+				class="form-control"
+				name="tx_mahupartners_mahupartners[company][expertises][_temp_][regulations]"
+				options="{m:GetAllRegulations()}"
+				optionValueField="id"
+				optionLabelField="name"
+				multiple="true"
+			/>
+		</div>
+	</article>
+</f:then>
+<f:else>
+
+<f:if condition="{success}">
+<div>
+	<p><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.success.0"/> <b>{company.name}</b> <f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.success.1"/></p>
+	<p>
+		<f:link.page 
+			pageUid="{settings.dataproviderPageID}"
+			class="no-change">
+			<i class="fas fa-long-arrow-alt-left smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.back"/>
+		</f:link.page>
+	</p>
+</div>
+</f:if>
+
+<f:if condition="{existingCompany}">
+<div>
+	<div style="margin: 20px 0">
+		<p class="largertext"><b><i class="fas fa-exclamation-triangle smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.errorexists.header"/> <q>{existingCompany.id}</q>!</b></p>
+		
+		<p>
+		<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.errorexists.link"/>
+			<f:link.action
+				action="detail"
+				controller="Partner"
+				pageUid="{settings.partnerSearchPageID}"
+				arguments="{id:existingCompany.id}"
+				class="internal no-change"	>
+				{existingCompany.name}
+			</f:link.action>
+		</p>
+		
+		<p><f:link.page pageUid="{settings.contactPageID}" class="internal no-change"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.errorexists.contact"/></f:link.page></p>
+	</div>
+	
+	<p>
+		<f:link.page 
+			pageUid="{settings.dataproviderPageID}"
+			class="no-change">
+			<i class="fas fa-long-arrow-alt-left smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.new.back"/>
+		</f:link.page>
+	</p>
+</div>
+</f:if>
+
+</f:else>
+</f:if>
+
+</f:section>

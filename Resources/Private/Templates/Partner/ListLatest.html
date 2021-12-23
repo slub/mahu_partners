@@ -1,0 +1,86 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:layout name="Default"/>
+<f:comment>
+	Template for a basic Detail view of all fields in the document.
+
+	Sets up the page with its title, CSS, JavaScript, the search form and pager,
+	uses the field configured as a heading and creates
+	a definition list of all field contents.
+
+	This can be a good starting point for refining the detail view for your
+	data model.
+</f:comment>
+
+<f:section name="Main">
+
+<s:page.linkCSS file="EXT:mahu_partners/Resources/Public/Css/Styles.css"/>
+
+<div class="partnerPageContent">
+	<h2>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:newpartners.heading')}</h2>
+
+	<div class="sectionContent">
+		<f:if condition="{settings.companylist.mode}=='random'"><f:then>
+		<p><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:newpartners.text1.random"/>
+		</f:then><f:else>
+		<p><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:newpartners.text1"/>
+		</f:else></f:if>
+		<f:if condition="{settings.partnerSearchPageID}">
+		<f:link.page pageUid="{settings.partnerSearchPageID}" class="no-change"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:newpartners.showAll"/></f:link.page>
+		</f:if>
+		</p>
+	</div>
+
+	<div class="sectionContent" id="newpartnersSection">
+	<f:for each="{results}" as="company" key="fieldName" iteration="iter">
+		<div class="newDataProvider">
+			<f:if condition="{settings.showLogos}"><f:if condition="{company.logo}">
+			<div class="logoContainer"><a href="{company.www}" class="no-change"><img alt="Logo {company.name}" src="{company.logo}"></img></a></div>
+			</f:if></f:if>
+			<p><span class="largetext">{company.name}</span> &ndash; {company.description}</p>
+			
+			<div class="companyDetail">
+			<p><a href="{company.www}" target="_blank" class="no-change"><i class="fas fa-external-link-alt smallicon" aria-hidden="true"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.website')}</a>
+			<f:if condition="{company.facetValue}">
+			<span class="separator">|</span>
+			<s:data.newArray
+					name="linkArguments"
+					keys="{0: '{settings.prefix}[q]', 1:'{settings.prefix}[facet]'}"
+					values="{
+						0: { default : '*' },
+						1: '{m:GetLinkParameterForFacet(facet:company.facet,facetValue:company.facetValue)}'
+					}"
+					omitEmptyFields="1" >
+				<f:link.page 
+					pageUid="{settings.materialSearchPageID}"
+					additionalParams="{linkArguments}"
+					class="internal">
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:newpartners.link"/> {company.name}
+				</f:link.page>
+			</s:data.newArray>
+			</f:if>
+			<span class="separator">|</span>
+			<s:data.newArray
+					name="linkArguments"
+					keys="{0: 'tx_mahupartners_mahupartners[id]', 1:'tx_mahupartners_mahupartners[action]',2:'tx_mahupartners_mahupartners[controller]'}"
+					values="{
+						0: '{company.id}',
+						1: 'detail',
+						2: 'Partner'
+					}"
+					omitEmptyFields="1" >
+				<f:link.page 
+					pageUid="{settings.partnerSearchPageID}"
+					additionalParams="{linkArguments}"
+					class="no-change">
+					{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.partnerDetails')}
+				</f:link.page>
+			</s:data.newArray>
+			</p>
+			</div>
+		</div>
+	</f:for>
+	</div>
+</div>
+</f:section>

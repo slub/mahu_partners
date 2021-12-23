@@ -1,0 +1,84 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+<f:comment>
+	Creates the result pager used on detail pages.
+</f:comment>
+
+<f:if condition="{settings.paging.detailPagePaging}">
+	<f:if condition="{arguments.underlyingQuery}">
+		<p class="queryAndPager">
+			<span class="backToResultList">
+				<s:data.newArray
+					name="linkArguments"
+					keys="{0:'q', 1:'sort', 2:'count', 3:'facet', 4:'extended', 5:'page'}"
+					values="{
+						0:arguments.underlyingQuery.q,
+						1:arguments.underlyingQuery.sort,
+						2:arguments.underlyingQuery.count,
+						3:arguments.underlyingQuery.facet,
+						4:arguments.extended,
+						5:'{m:pageNumberForResultNumber(
+							resultNumber:arguments.underlyingQuery.position,
+							resultsPerPage:arguments.underlyingQuery.count,
+							defaultResultsPerPage:settings.paging.perPage
+						)}'
+					}"
+					omitEmptyFields="1">
+					<f:link.action
+						action="index"
+						arguments="{linkArguments}"
+						section="c{config.uid}-result-{company.id}"
+						class="internal">
+						<i class="fas fa-long-arrow-alt-left smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:Return to results list"/>
+					</f:link.action>
+				</s:data.newArray>
+			</span>
+
+			<span class="resultPager">
+				<span class="pager">
+					<f:if condition="{document-previous}">
+						<f:then>
+							<f:link.action
+								action="detail"
+								arguments="{id: document-previous.id}"
+								section="{settings.jumpToID}"
+								class="previous internal no-change"
+								onclick="return mahupartners.AbstractPage.detailViewWithPaging(this, {document-previous-number});"
+								title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:previous')}: {document-previous.name}">
+								<i class="fas fa-chevron-left"></i>
+							</f:link.action>
+						</f:then>
+						<f:else>
+							<i class="fas fa-chevron-left disabled"></i>
+						</f:else>
+					</f:if>
+				</span>
+		
+				<span class="position">
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:result"/>
+					<span class="resultPosition">{arguments.underlyingQuery.position}</span>
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:of"/>
+					<span class="resultTotalCount">{numfound}</span>
+				</span>
+
+				<span class="pager">
+					<f:if condition="{document-next}">
+						<f:then>
+							<f:link.action
+								action="detail"
+								arguments="{id: document-next.id}"
+								section="{settings.jumpToID}"
+								class="next internal no-change"
+								onclick="return mahupartners.AbstractPage.detailViewWithPaging(this, {document-next-number});" title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:next')}: {document-next.name}">
+								<i class="fas fa-chevron-right"></i>								
+							</f:link.action>
+						</f:then>
+						<f:else>
+							<i class="fas fa-chevron-right disabled"></i>
+						</f:else>
+					</f:if>
+				</span>
+			</span>
+		</p>
+	</f:if>
+</f:if>

@@ -1,0 +1,174 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace mp=Slub\MahuPartners\ViewHelpers}
+
+<f:comment>
+	Renders information about a given company, e.g., a producer or data provider. 
+</f:comment>
+
+<f:if condition="{partner}">
+<div class="division {num}" {f:if(condition:'{num}==0',else:'style="display:none"')}>
+	<div>
+		<div class="companyHeader">
+			<div>
+			<f:if condition="{partner.description}"><p><span class="largertext">{partner.name} &ndash; </span>{partner.description}</p></f:if>
+			<f:if condition="{partner.businessArea}">Hauptsächliches Geschäftsfeld: {partner.businessArea}<br/></f:if> 
+			<f:if condition="{partner.numberOfEmployees}">Anzahl von Mitarbeitern: {partner.numberOfEmployees}<br/></f:if>
+			<f:if condition="{partner.formOfCompany}">Unternehmensform: {partner.formOfCompany}</f:if>
+			</div>
+			
+			<f:if condition="{settings.mahu.showLogos}"><f:if condition="{partner.logo}">
+			<div>
+				<a href="{partner.www}"><img alt="Logo {partner.name}" src="{partner.logo}"/></a>
+			</div>
+			</f:if></f:if>
+		</div>
+		
+		<div class="companyDetail">
+			<p><a href="{partner.www}" target="_blank" class="external"><i class="fas fa-external-link-alt smallicon" aria-hidden="true"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.website')}</a>
+			<f:if condition="{partner.facetValue}">
+			<span class="separator">|</span>
+			<s:data.newArray
+					name="linkArguments"
+					keys="{0: 'q', 1:'facet'}"
+					values="{
+						0: { default : '*' },
+						1: '{mp:GetLinkParameterForFacet(facet:partner.facet,facetValue:partner.facetValue)}'
+					}"
+					omitEmptyFields="1" >
+				<f:link.action
+					action="index"
+					arguments="{linkArguments}"
+					pageUid="{settings.materialSearchPageID}"
+					class="internal" >
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.link"/> {partner.name}
+				</f:link.action>
+			</s:data.newArray>
+			</f:if>
+			</p>
+			
+			<v:variable.set name="hasAddress" value="{s:logic.or(conditions:'{ 0:\"{partner.street}\", 1:\"{partner.zip}\", 2:\"{partner.city}\", 3:\"{partner.country}\"}')}" />
+			<v:variable.set name="hasContactInfo" value="{s:logic.or(conditions:'{ 0:\"{hasAddress}\", 1:\"{partner.contacts.0}\"}')}" />
+			<v:variable.set name="multipleTabsRequired" value="{s:logic.and(conditions:'{ 0:\"{hasContactInfo}\", 1:\"{partner.expertises.0}\"}')}" />
+
+			<div style="padding: 10px 0px">
+			<f:if condition="{multipleTabsRequired}"><f:then>
+			<div class="tabs">
+				<f:if condition="{hasContactInfo}">
+				<div class="tab currentTab"><a class="largertext" tabindex=0 data-cid="companyContacts">{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.contact')}</a></div>
+				</f:if>
+				<f:if condition="{partner.expertises}">
+				<div class="tab"><a class="largertext" tabindex=0 data-cid="companyExpertises">{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise')}</a></div>
+				</f:if>
+			</div>
+			</f:then><f:else><f:if condition="{hasContactInfo}">
+				<div class="tabs"><div class="tab currentTab"><span class="largertext" style="font-weight:initial">{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.contact')}</span></div></div>
+			</f:if></f:else></f:if>
+			
+			<div class="tabContent">
+				<div class="companyContacts">
+					<f:if condition="{hasAddress}">
+						<p class="contactDetails">
+						<i class="fas fa-map-marked-alt smallicon"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.address')}:<br/>
+						<f:if condition="{partner.street}">
+						{partner.street}<br/>
+						</f:if>
+						<f:if condition="{partner.zip}">
+						{partner.zip} {partner.city}<br/>
+						</f:if>
+						<f:if condition="{partner.country}">
+						{partner.country}
+						</f:if>
+						</p>
+					</f:if>
+					
+					<f:if condition="{f:count(subject:partner.contacts)} > 0">
+					<f:for each="{partner.contacts}" as="contact">
+						<p class="contactDetails">
+						<i class="fas fa-user-tie smallicon"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.contactPerson')}<f:if condition="{contact.materialClasses}"> ({f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.forMaterialClass')}: {contact.materialClasses})</f:if>:<br/>
+						<f:if condition="{contact.surname}">
+						{contact.surname} {contact.familyname}<br/>
+						</f:if>
+						<f:if condition="{contact.position}">
+						{contact.position}<br/>
+						</f:if>
+						<f:if condition="{contact.phone}">
+						<i class="fa fa-phone smallicon" aria-hidden="true"></i>{contact.phone}<br/>
+						</f:if>
+						<f:if condition="{contact.fax}">
+						<i class="fa fa-fax smallicon" aria-hidden="true"></i>{contact.fax}<br/>
+						</f:if>
+						<f:if condition="{contact.email}">
+						<a class="mail" href="mailto:{contact.email}"><i class="far fa-envelope smallicon" aria-hidden="true"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.writeMail')}</a><br/>
+						</f:if>
+						</p>
+					</f:for>
+					</f:if>
+				</div>
+				
+				<f:if condition="{partner.expertises}">
+				<div class="companyExpertises" style="display:none">
+				
+				<f:for each="{mp:getGroupedExpertises(company:partner)}" as="grp" iteration="iter">
+					<f:if condition="{f:count(subject:grp)} > 0">
+					<div><div class="expertise">
+						<div class="expertiseHeader">
+							<i class="fas fa-industry smallicon"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.{iter.index}')}
+						</div>
+						<div class="groupEntries">
+						<f:for each="{grp}" as="expertise">
+							<div>
+								<p><b>{expertise.name}</b></p>
+								<ul>
+									<f:if condition="{expertise.description}"><li>{expertise.description}</li></f:if>
+									<f:if condition="{expertise.smallestQuantity}">
+									<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.0.sq')} : {expertise.smallestQuantity}</li>
+									</f:if>
+									<f:if condition="{expertise.customization}">
+									<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.0.sr')} : {f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:yes')}</li>
+									</f:if>
+								<f:if condition="{expertise.regulation}">
+									<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.2.regulation')}:
+									<f:for each="{expertise.regulation}" as="reg" iteration="eriter">
+										{reg.name}<f:if condition="{eriter.isLast}"><f:then></f:then><f:else>, </f:else></f:if> 
+									</f:for>
+									</li>
+								</f:if>
+								<f:if condition="{expertise.materialClass}">
+									<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.onclass')}: {expertise.materialClass}</li>
+								</f:if>
+								<f:if condition="{expertise.purpose}">
+									<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.3.purpose')}: {expertise.purpose}</li>
+								</f:if>
+								</ul>
+							</div>
+						</f:for>
+						</div>
+					</div></div>
+					</f:if>
+				</f:for>
+					
+					<f:if condition="{partner.services}">
+					<div>
+						<div class="expertise">
+							<div class="expertiseHeader">
+								<i class="fas fa-comment-dollar smallicon"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.expertise.services')}
+							</div>
+							<div class="groupEntries">
+								<ul>
+								<f:for each="{v:iterator.explode(content:'{partner.services}',glue:';')}" as="service">
+									<li>{service}</li>
+								</f:for> 
+								</ul>
+							</div>
+						</div>
+					</div>			
+					</f:if>
+				</div>
+			</f:if>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+</f:if>	

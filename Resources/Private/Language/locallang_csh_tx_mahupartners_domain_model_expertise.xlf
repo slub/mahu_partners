@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-08T09:17:01Z" product-name="mahu_partners">
+		<header/>
+		<body>
+			<trans-unit id="type.description">
+				<source>Classifies the expertise</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>A short name for that expertise</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Textual description of that expertise</source>
+			</trans-unit>
+			<trans-unit id="purpose.description">
+				<source>The purpose of doing something</source>
+			</trans-unit>
+			<trans-unit id="quantities.description">
+				<source>Defines in which quantities a material can be produced or processed.</source>
+			</trans-unit>
+			<trans-unit id="customization.description">
+				<source>Defines whether the company / institute can meet custom requirements in producing a material.</source>
+			</trans-unit>
+			<trans-unit id="material_classes.description">
+				<source>Material classes for which that expertise applies (semicolon-separated enumeration).</source>
+			</trans-unit>
+			<trans-unit id="regulations.description">
+				<source>Regulations that expertise refers to, e.g., when testing or producing a material.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,126 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:layout name="Default"/>
+<f:comment>
+	Template for a the search results view.
+
+	Sets up the page with its title, the search form, pager and result count
+	information. Then displays the configured facets and a result list using the
+	fields configured as standardFields.title and standardFields.snippet.
+	Results are linked to the respective documents’ detail pages.
+
+	This result display is sufficient for basic result lists.
+</f:comment>
+
+<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/AbstractPage.js" name="mpapage"/>
+<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/PartnerPage.js" name="mpppage"/>
+
+<div class="partnerPageContent">
+	<h1>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.heading')}</h1>
+
+	<p class="welcomeMessage"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.text" arguments="{0: '{m:getNumberOfCompanies()}'}"/></p>
+
+	<f:form name="c{config.uid}-form"
+		method="post"
+		controller="Partner"
+		action="index"
+		absolute="1"
+		class="searchForm search-simple">
+		
+		<f:form.textfield
+			id="c{config.uid}-name"
+			class="inputType-text form-control"
+			name="q[name]"
+			value="{queryParameter}"
+			placeholder="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.form.placeholder')}"
+			additionalAttributes="{autocompleteURL:\"{f:uri.action(
+				arguments:{q:'%%%%',data-format:'json'},
+				action:'suggest',
+				data-format:'json'
+				pageType:'1369315151',
+				format:'data'
+			)}\"}"
+		/>
+		
+		<button type="submit" title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:search')}" class="submit">
+			<i class="fas fa-search"></i>
+		</button>
+		
+		<f:render partial="Mahu/Form/ModifierArea" arguments="{_all}" />
+	</f:form>
+
+	<f:if condition="{search}">
+		<f:then>
+			<f:comment>In case there is a query, we visualize the results in a list with reduced info and links to detail pages.</f:comment>
+			<f:if condition="{results.resultCount}>0">
+			<f:then>
+				<div id="results">
+					<div class="navigation">
+						<h2>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:results')}</h2>
+						<div style="clear:both">
+							<a id="exportResults" tabindex="0" title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:exportResults')}"><i class="fa fa-download smallicon"></i></a>
+							<a id="printResults" tabindex="0" title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:printResults')}"><i class="fa fa-print smallicon"></i></a>
+							<s:data.newArray
+									name="linkArguments"
+									keys="{0: 'q'}"
+									values="{
+										0: { name : '' }
+									}"
+									omitEmptyFields="1" >
+								<f:link.action
+									action="index"
+									arguments="{linkArguments}"
+									pageUid="{settings.partnerSearchPageID}"
+									id="resetQuery"
+									additionalAttributes="{tabindex : 0}"
+									title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:resetQuery')}">
+									<i class="far fa-times-circle smallicon"></i>
+								</f:link.action>
+							</s:data.newArray>
+							
+							<f:render partial="Mahu/Form/ResultCount" arguments="{results:results, config:config}"/>
+						</div>
+					</div>
+					
+					<ul class="resultList" start="{config.counterStart}">
+					<f:for each="{results.results}" as="result"  iteration="iter">
+						<f:if condition="{result.type}=='division'"><f:then>
+						<f:render partial="mahu/PartnerPage/Result" arguments="{ partner : result.entity, isDivision:1, parent: result.parent, config: config }"/>
+						</f:then><f:else>
+						<f:render partial="mahu/PartnerPage/Result" arguments="{ partner : result.entity, config: config }"/>
+						</f:else></f:if>
+					</f:for>
+					</ul>
+					
+					<div class="bottom">
+						<f:render partial="Mahu/Form/ListPager" arguments="{results:results, arguments: arguments}"/>
+					</div>
+				</div>
+			</f:then>
+			<f:else>
+				<f:render partial="Mahu/Form/NoResultsMessage" arguments="{pageuid:'{settings.partnerSearchPageID}'}"/>
+			</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<f:comment>Listing of companies and institutes with detail page like infos</f:comment>
+		
+			<f:if condition="{results.numfound} > 0">
+				<f:render partial="Mahu/Form/ResultCount" arguments="{results:results, config:config}"/>
+				
+				<div>
+				<f:for each="{results.results}" as="result"  iteration="iter">
+					<f:render partial="mahu/PartnerPage/Partner" arguments="{ partner : result.entity }"/>
+				</f:for>
+				</div>
+				
+				<div class="bottom">
+					<f:render partial="Mahu/Form/ListPager" arguments="{results:results, arguments: arguments}"/>
+				</div>
+			</f:if>
+		</f:else>
+	</f:if>
+	
+	<a id="toTop" title="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:totop')}" href="#mahuLogo"><i class="fas fa-angle-double-up fa-2x" aria-hidden="true"></i></a>
+</div>

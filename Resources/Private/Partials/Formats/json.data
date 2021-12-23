@@ -1,0 +1,11 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+
+<f:if condition="{results}"><f:then>
+	<f:format.htmlentitiesDecode>
+		<f:format.raw>
+			<s:format.json data="{results}"/>
+		</f:format.raw>
+	</f:format.htmlentitiesDecode>
+</f:then><f:else>
+[]
+</f:else></f:if>

@@ -1,0 +1,55 @@
+<T3DataStructure>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Einstellungen</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<!-- View -->
+					<switchableControllerActions>
+						<TCEforms>
+							<label>Anzeigemodus</label>
+							<onChange>reload</onChange>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="1">
+										<numIndex index="0">Partner</numIndex>
+										<numIndex index="1">Partner->index;Partner->detail</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">Partnerliste für Nutzer</numIndex>
+										<numIndex index="1">Partner->list</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">Partner Editieransicht</numIndex>
+										<numIndex index="1">Partner->edit;Partner->new</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">Regulations</numIndex>
+										<numIndex index="1">Regulation->index; Regulation->detail</numIndex>
+									</numIndex>
+									<numIndex index="5">
+										<numIndex index="0">Neueste Partner</numIndex>
+										<numIndex index="1">Partner->listLatest</numIndex>
+									</numIndex>
+									<numIndex index="6">
+										<numIndex index="0">Vorschau Partner</numIndex>
+										<numIndex index="1">Partner->preview</numIndex>
+									</numIndex>
+									<numIndex index="7">
+										<numIndex index="0">Dateien</numIndex>
+										<numIndex index="1">File->index;File->add;File->remove</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

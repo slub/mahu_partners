@@ -1,0 +1,64 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:comment>
+	Creates a list item for document stored in the document variable.
+
+	It uses the standardFields configured in settings, result highlighting
+	(if configured) and a link to the document’s page.
+</f:comment>
+
+<li id="c{config.uid}-result-{regulation.uid}">
+	<article class="flexResultLine">
+		<div class="baseInfo">
+		<div class="matImage">
+		<f:if condition="{regulation.imgUrl}">
+			<f:then>
+			<img src="{regulation.imgUrl}" onerror="mahu.handleImageError(arguments[0])"/>
+			</f:then>
+			<f:else>
+			<img src="/typo3conf/ext/mahu_partners/Resources/Public/Images/placeholder.png" class="hidden"/>
+			</f:else>
+		</f:if>
+		</div>
+		<p>
+			<f:link.action
+				action="detail"
+				arguments="{id:regulation.uid}"
+				class="internal no-change" 
+				onclick="{f:if(
+					condition:'{settings.paging.detailPagePaging}',
+					then:'return mahupartners.AbstractPage.detailViewWithPaging(this);'
+				)}">
+				<span style="font-size: 133%;line-height: 133%;">{regulation.name}</span>
+			</f:link.action>
+		</p>
+			
+		</div>
+		
+		<div class="resultlinks">
+			<p><a href="{regulation.uri}" target="_blank" class="external"><i class="fas fa-external-link-alt smallicon" aria-hidden="true"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.website')}</a>
+			<f:if condition="{regulation.facetValues}">
+			<span class="separator">|</span>
+			<v:variable.set name="fvals" value="{v:iterator.explode(content:'{regulation.facetValues}',glue:';')}" />
+			<s:data.newArray
+					name="linkArguments"
+					keys="{0: '{settings.prefix}[q]', 1:'{settings.prefix}[facet]'}"
+					values="{
+						0: { default : '*' },
+						1: '{m:GetLinkParameterForFacet(facet:\'certificate\',facetValue:fvals)}'
+					}"
+					omitEmptyFields="1" >
+				<f:link.page 
+					pageUid="{settings.materialSearchPageID}"
+					additionalParams="{linkArguments}"
+					class="internal">
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:regulationspage.link"/>
+				</f:link.page>
+			</s:data.newArray>
+			</f:if>
+			</p>
+		</div>
+	</article>
+</li>

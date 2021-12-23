@@ -1,0 +1,25 @@
+<f:comment>
+	Creates a div.resultCount.
+
+	It displays the current range and total number of results as appropriate.
+	If an error occurred it indicates the error.
+</f:comment>
+<div class="resultCount"><span>
+	<f:if condition="{results.numfound}==1">
+		<f:then>
+			<f:translate key="1 result"/>
+		</f:then>
+		<f:else>
+			<f:if condition="{results.numfound}<{settings.count}">
+				<f:then>
+					{results.numfound} <f:translate key="results"/>
+				</f:then>
+				<f:else>
+					{config.counterStart}-<f:if condition="{results.numfound}<{config.counterEnd}"><f:then>{results.numfound}</f:then><f:else>{config.counterEnd}</f:else></f:if>
+					<f:translate key="of"/>
+					{results.numfound}
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+</span></div>

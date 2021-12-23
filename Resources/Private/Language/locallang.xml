@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <type>module</type>
+        <description>
+            Language labels for form labels.
+            The file »locallang-form.xml« will be loaded from the path set as
+            »settings.languageRootPath« in TypoScript.
+
+            Localisation keys / label indexes follow the convention:
+            * label for input FOO: input.FOO
+            * label for child-item BAR in control FOO (e.g. select options): input.FOO-BAR
+            * placeholder for input FOO: input.FOO.placeholder
+        </description>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="legalnotice">Legal notice</label>
+            <label index="privacypolicy">Privacy policy</label>
+			<label index="about">About us</label>
+			<label index="result">result</label>
+			<label index="abort">Abort</label>
+			<label index="of">of</label>
+			<label index="previous">previous</label>
+			<label index="next">next</label>
+			<label index="Return to results list">Return to results list</label>
+
+			<label index="search">search</label>
+			<label index="1 result">One result</label>
+			<label index="results">Search Results</label>
+            <label index="resultspage.result.blurred">Data has been hidden at the request of the manufacturer.</label>
+            <label index="totop">Scroll to top</label>
+            <label index="resetQuery">Reset query</label>
+   			<label index="exportResults">Export results (as CSV)</label>
+			<label index="printResults">Print results</label>
+			
+			<label index="showMaterialsOf">Show the materials of</label>
+            
+            <label index="input.sort">Sort By</label>
+            <label index="input.sort-default">Relevance</label>
+            <label index="input.sort-nameAsc">Name A-Z</label>
+            <label index="input.sort-nameDesc">Name Z-A</label>
+            <label index="input.count">Results per Page</label>
+
+			<label index="noresults.heading">No results found!</label>
+			<label index="noresults.1">Please...</label>
+			<label index="noresults.2">... try a </label>
+			<label index="noresults.2.1">new query.</label>
+
+			<label index="partnerpage.heading">Companies and Institutes in the Material Hub</label>
+			<label index="partnerpage.text">Below you will find an alphabetical list of the Material Hub partners. Currently, materials from %1$s companies and institutes are represented in our research portal.</label>
+			<label index="partnerpage.businessArea">Main business area</label>
+			<label index="partnerpage.numberOfEmployees">Number of employees</label>
+			<label index="partnerpage.businessForm">Business form</label>
+			<label index="partnerpage.link">Show the materials of</label>
+			<label index="partnerpage.contact">Contact</label>
+			<label index="partnerpage.address">Address</label>
+			<label index="partnerpage.contactPerson">Contact person</label>
+			<label index="partnerpage.forMaterialClass">for material class</label>
+			<label index="partnerpage.divisions">Divisions and subsidiary institutions</label>
+			<label index="partnerpage.expertise">Expertise</label>
+			<label index="partnerpage.expertise.services">Further services</label>
+			<label index="partnerpage.expertise.onclass">For the following material classes</label>
+			
+			<label index="partnerpage.expertise.0">Production</label>
+			<label index="partnerpage.expertise.0.sq">small quantities</label>
+			<label index="partnerpage.expertise.0.sr">special requests</label>
+			<label index="partnerpage.expertise.1">Material testing</label>
+			<label index="partnerpage.expertise.2">Material certification</label>
+			<label index="partnerpage.expertise.2.regulation">Corresponding regulation</label>
+			<label index="partnerpage.expertise.3">Material coating</label>
+			<label index="partnerpage.expertise.3.purpose">Purpose of the coating</label>
+			<label index="partnerpage.expertise.4">Material processing</label>
+			<label index="partnerpage.expertise.5">Material construction</label>
+			
+			<label index="partnerpage.list.main">Here you find a list of organization descriptions that you have created. For these, you can provide material data by either uploading it or entering it into a form.</label>
+			<label index="partnerpage.list.noorgas">You have not created any organization descriptions yet.</label>
+			<label index="partnerpage.list.tableheader.org">Organization</label>
+			<label index="partnerpage.list.tableheader.act">Actions</label>
+			<label index="partnerpage.list.inactive">(Status: waiting for activation by editors)</label>
+			<label index="partnerpage.list.actions.edit">Edit</label>
+			<label index="partnerpage.list.actions.view">View detail page</label>
+			<label index="partnerpage.list.actions.preview">Preview detail page</label>
+			<label index="partnerpage.list.actions.upload">Upload material data</label>
+			<label index="partnerpage.list.actions.create">Enter material data via form</label>
+			<label index="partnerpage.list.actions.new">Create new organization description</label>
+			
+			<label index="partnerpage.preview.heading">Preview of organization</label>
+			<label index="partnerpage.preview.explanation">Here you can see a preview. The description of the organization will be publicly visible only after it has been released by the editors.</label>
+			<label index="partnerpage.preview.back">Back to the data provider area</label>
+			
+			
+			<label index="partnerpage.new.base">Base information</label>
+			<label index="partnerpage.new.name.2">Name of the organizational unit</label>
+			<label index="partnerpage.new.name.1">Name</label>
+			<label index="partnerpage.new.name.help">Strukturheit möglichst genau benennen, z. B. auf Ebene einer Professur, einer Abteilung oder eines Labors</label>
+			
+			<label index="partnerpage.new.description">Description</label>
+			<label index="partnerpage.new.disclaimer">Disclaimer</label>
+			<label index="partnerpage.new.disclaimer.help">A general disclaimer that applies to all materials of that organization. Besides that, material descriptions can carry individual disclaimers.</label>
+			<label index="partnerpage.new.www">Web site</label>
+			<label index="partnerpage.new.logo">Logo</label>
+			<label index="partnerpage.new.logo.option1">Option 1: link an image (URL)</label>
+			<label index="partnerpage.new.logo.option2">Option 2: upload an image (max 1 MB)</label>
+			<label index="partnerpage.new.logo.nologo">No logo uploaded or linked yet.</label>
+			<label index="partnerpage.new.type">Type</label>
+			<label index="partnerpage.new.type.1">Company</label>
+			<label index="partnerpage.new.type.2">Reseach institution</label>
+			<label index="partnerpage.new.formOfCompany">Form of Company</label>
+			<label index="partnerpage.new.businessArea">Business area</label>
+			<label index="partnerpage.new.numberOfEmployees">Number of employees</label>
+			<label index="partnerpage.new.address">Address</label>
+			<label index="partnerpage.new.address.street">Street and house number</label>
+			<label index="partnerpage.new.address.zip">Zip code</label>
+			<label index="partnerpage.new.address.city">City</label>
+			<label index="partnerpage.new.address.country">Country</label>
+			<label index="partnerpage.new.contacts">Contact information</label>
+			<label index="partnerpage.new.expertises">Expertises</label>
+			<label index="partnerpage.new.services">Services / devices</label>
+			<label index="partnerpage.new.services.help">Offered services and equipment (semicolon-separated enumeration)</label>
+			<label index="partnerpage.new.success.0">The description of the organization</label>
+			<label index="partnerpage.new.success.1">has successfully been added.</label>
+			<label index="partnerpage.new.add">Add</label>
+			<label index="partnerpage.new.back">Back to the overview</label>
+			<label index="partnerpage.new.submit">Add organisation</label>
+			<label index="partnerpage.new.superordinate">University or non-university research institution</label>
+			
+			<label index="partnerpage.new.errorexists.header">The organization could not be added! There already exists an organization with the ID</label>
+			<label index="partnerpage.new.errorexists.link">To the detail page of the existing organization</label>
+			<label index="partnerpage.new.errorexists.contact">Please contact us to be assigned to the existing organization description instead.</label>
+			
+			<label index="partnerpage.edit.contact">Contact</label>
+			<label index="partnerpage.edit.contact.surname">Surname</label>
+			<label index="partnerpage.edit.contact.familyname">Familyname</label>
+			<label index="partnerpage.edit.contact.title">Title</label>
+			<label index="partnerpage.edit.contact.position">Position</label>
+			<label index="partnerpage.edit.contact.email">E-mail</label>
+			<label index="partnerpage.edit.contact.phone">Phone</label>
+			<label index="partnerpage.edit.contact.fax">Fax</label>
+			<label index="partnerpage.edit.contact.matClasses">Material classes</label>
+			<label index="partnerpage.edit.contact.matClasses.help">Material classes, for which this is the primary contact (semicolon-separated enumeration).</label>
+			<label index="partnerpage.edit.expertise">Expertise</label>
+			<label index="partnerpage.edit.expertise.type">Type of expertise</label>
+			<label index="partnerpage.edit.expertise.name">Name</label>
+			<label index="partnerpage.edit.expertise.description">Description</label>
+			<label index="partnerpage.edit.expertise.purpose">Purpose</label>
+			<label index="partnerpage.edit.expertise.quantities">Quantities</label>
+			<label index="partnerpage.edit.expertise.customization">Respond to customer needs</label>
+			<label index="partnerpage.edit.expertise.matClasses">Material classes</label>
+			<label index="partnerpage.edit.expertise.matClasses.help">Material classes, to which this expertise refers to (semicolon-separated enumeration)</label>
+			<label index="partnerpage.edit.expertise.regulations">Regulations</label>
+			<label index="partnerpage.edit.expertise.regulations.help">Regulations, to which this expertise refers to, e. g., when testing or producing materials. Press and hold the Ctrl key to select multiple entries.</label>
+			<label index="partnerpage.edit.submit">Save organization</label>
+			<label index="partnerpage.edit.unknownID">An organization description with the given ID does not exist!</label>
+			<label index="partnerpage.edit.success.1">has successfully been saved.</label>
+						
+            <label index="partnerpage.form.placeholder">Search for companies and institutes</label>
+
+			<label index="regulationspage.heading">Regulations</label>
+			<label index="regulationspage.text">Here you will find an overview of selected regulations and the opportunity to learn more about them. In addition, you can view materials that are certified according to these regulations.</label>
+			<label index="regulationspage.link">Show corresponding materials</label>
+			
+			<label index="regulationspage.tags">Tags</label>
+			<label index="regulationspage.region">Region</label>
+			
+			<label index="regulationspage.form.placeholder">Search for regulations and standards</label>
+			
+			<label index="extended Search">extended search</label>
+			<label index="basic Search">basic search</label>
+			
+			<label index="partnerpage.website">Website</label>
+			<label index="partnerpage.writeMail">Request via e-mail</label>
+			<label index="partnerpage.materialPage">Material description</label>
+			<label index="partnerpage.partnerDetails">More details</label>
+
+			<label index="newpartners.heading">New Partners in the Material Hub</label>			
+			<label index="newpartners.link">Show the materials of</label>
+			<label index="newpartners.text1.random">See below for a random choice of our partners.</label>
+			<label index="newpartners.text1">See below for a list of our latest partners.</label>
+			<label index="newpartners.showAll">Or show all partners.</label>
+						
+			<label index="email.add.header">Organization description added</label>
+        	<label index="email.add.body">User %1$s added the description of %2$s.</label>
+        	<label index="email.edit.header">Organization description edited</label>
+        	<label index="email.edit.body">Nutzer %1$s edited the description of %2$s.</label>
+
+        	<label index="email.fileremove.header">File deleted</label>
+        	<label index="email.fileremove.body">User %1$s has removed file '%2$s'."</label>
+        	<label index="email.fileadd.header">File uploaded</label>
+        	<label index="email.fileadd.body">User %1$s has uploaded file(s) '%2$s'."</label>
+        	
+        	<label index="nofiles">You did not upload any files so far.</label>
+            <label index="nologin">No user is logged in.</label>
+			<label index="nocompany">No organisation has been selected.</label>
+        	<label index="files">Your uploaded files</label>
+        	<label index="file.name">File name</label>
+        	<label index="removefile">Remove file</label>
+        	<label index="file.size">Size</label>
+        	<label index="file.date">Date</label>
+        	<label index="file.upload">Upload file</label>
+        	<label index="file.upload.choose">Choose file</label>
+        	<label index="file.upload.header">Upload files for organization</label>
+        	<label index="file.list.header">File list for organization</label>
+        	
+        </languageKey>
+
+        <languageKey index="de" type="array">
+        	<label index="yes">Ja</label>
+			<label index="no">Nein</label>
+			<label index="result">Ergebnis</label>
+			<label index="of">von</label>
+			<label index="abort">Abbrechen</label>
+			<label index="previous">voriges Ergebnis</label>
+			<label index="next">nächstes Ergebnis</label>
+			<label index="Return to results list">Zurück zur Ergebnisliste</label>
+			
+			<label index="legalnotice">Impressum</label>
+            <label index="privacypolicy">Datenschutzerklärung</label>
+			<label index="about">Über uns</label>
+
+			<label index="search">Suchen</label>
+			<label index="1 result">Ein Ergebnis</label>
+            <label index="results">Suchergebnisse</label>
+            <label index="resultspage.result.blurred">Daten wurden auf Wunsch des Herstellers ausgeblendet.</label>
+            <label index="resetQuery">Suche zurücksetzen</label>
+			<label index="exportResults">Ergebnisse exportieren (CSV)</label>
+			<label index="printResults">Ergebnisse drucken</label>
+			
+			<label index="showMaterialsOf">Zu den Materialien von</label>
+
+			<label index="selectAnOption">Wählen Sie Optionen...</label>
+			<label index="relevanceIndicator">Relevant weil Treffer in folgenden Feldern:</label>
+			
+            <label index="input.sort">Sortierung</label>
+            <label index="input.sort-default">Relevanz</label>
+            <label index="input.sort-nameAsc">Name A-Z</label>
+            <label index="input.sort-nameDesc">Name Z-A</label>
+            <label index="input.count">Ergebnisse pro Seite</label>
+
+			<label index="noresults.heading">Leider keine Ergebnisse gefunden!</label>
+			<label index="noresults.1">Bitte...</label>
+			<label index="noresults.2">... versuchen Sie es mit einer </label>
+			<label index="noresults.2.1">neuen Anfrage.</label>
+
+			<label index="partnerpage.heading">Firmen und Institute im Material Hub</label>
+			<label index="partnerpage.text">Unten finden Sie die Partner des Material Hub. Aktuell sind Materialien von %1$s Firmen und Instituten in unserem Rechercheportal vertreten.</label>
+			<label index="partnerpage.businessArea">Hauptsächliches Geschäftsfeld</label>
+			<label index="partnerpage.numberOfEmployees">Anzahl von Mitarbeitern</label>
+			<label index="partnerpage.businessForm">Unternehmensform</label>
+			<label index="partnerpage.link">Zu den Materialien von</label>
+			<label index="partnerpage.contact">Kontakt</label>
+			<label index="partnerpage.address">Adresse</label>
+			<label index="partnerpage.contactPerson">Ansprechpartner</label>
+			<label index="partnerpage.forMaterialClass">für Materialklasse</label>
+			<label index="partnerpage.divisions">Untergeordnete Einrichtungen</label>
+			
+			<label index="partnerpage.expertise">Kompetenzen</label>
+			<label index="partnerpage.expertise.services">Weitere Dienstleistungen</label>
+			<label index="partnerpage.expertise.onclass">Für folgende Materialklassen</label>
+			
+			<label index="partnerpage.expertise.0">Herstellung</label>
+			<label index="partnerpage.expertise.0.sq">Kleinstmengen</label>
+			<label index="partnerpage.expertise.0.sr">Sonderwünsche</label>
+			<label index="partnerpage.expertise.1">Materialprüfung</label>
+			<label index="partnerpage.expertise.2">Zertifizierung</label>
+			<label index="partnerpage.expertise.2.regulation">Zugehöriges Regularium</label>
+			<label index="partnerpage.expertise.3">Beschichtung</label>
+			<label index="partnerpage.expertise.3.purpose">Zweck der Beschichtung</label>
+			<label index="partnerpage.expertise.4">Verarbeitung</label>
+			<label index="partnerpage.expertise.5">Entwicklung</label>
+			
+			<label index="partnerpage.list.main">Hier finden Sie eine Liste der von Ihnen bereits angelegten Organisationsbeschreibungen, für die Sie Materialdaten bereitstellen können, indem Sie sie entweder hochladen oder in ein Formular eingeben.</label>
+			<label index="partnerpage.list.noorgas">Sie haben bisher keine Organisationsbeschreibungen angelegt.</label>
+			<label index="partnerpage.list.tableheader.org">Organisation</label>
+			<label index="partnerpage.list.tableheader.act">Aktionen</label>
+			<label index="partnerpage.list.inactive">(Status: wartet auf Freischaltung durch Redaktion)</label>
+			<label index="partnerpage.list.actions.edit">Bearbeiten</label>
+			<label index="partnerpage.list.actions.view">Detailseite ansehen</label>
+			<label index="partnerpage.list.actions.preview">Vorschau ansehen</label>
+			<label index="partnerpage.list.actions.upload">Materialdaten hochladen</label>
+			<label index="partnerpage.list.actions.create">Materialdaten per Formular eingeben</label>
+			<label index="partnerpage.list.actions.new">Neue Organisationsbeschreibung erstellen</label>
+			
+			<label index="partnerpage.preview.heading">Vorschau auf Organisation</label>
+			<label index="partnerpage.preview.explanation">Hier sehen Sie eine Vorschau. Die Beschreibung der Organisation wird erst öffentlich sichtbar, wenn sie durch die Redaktion freigeschaltet wurde.</label>
+			<label index="partnerpage.preview.back">Zurück zum Datenanbieterbereich</label>
+			
+			<label index="partnerpage.new.base">Basisinformationen</label>
+			<label index="partnerpage.new.name.2">Struktureinheit</label>
+			<label index="partnerpage.new.name.1">Name</label>
+			<label index="partnerpage.new.name.help">Strukturheit möglichst genau benennen, z. B. auf Ebene einer Professur, einer Abteilung oder eines Labors</label>
+			<label index="partnerpage.new.description">Beschreibung</label>
+			<label index="partnerpage.new.disclaimer">Haftungsausschluss</label>
+			<label index="partnerpage.new.disclaimer.help">Ein allgemeiner Haftungsausschluss, der für alle Materialien dieser Organisation gilt. Daneben können Materialbeschreibungen über individuelle Haftungsausschlüsse verfügen.</label>
+			<label index="partnerpage.new.www">Webseite</label>
+			<label index="partnerpage.new.logo">Logo</label>
+			<label index="partnerpage.new.logo.option1">Option 1: Bild verlinken (URL)</label>
+			<label index="partnerpage.new.logo.option2">Option 2: Bild hochladen (maximal 1 MB)</label>
+			<label index="partnerpage.new.logo.nologo">Noch kein Logo hochgeladen oder verlinkt.</label>
+			<label index="partnerpage.new.type">Typ</label>
+			<label index="partnerpage.new.type.1">Firma</label>
+			<label index="partnerpage.new.type.2">Forschungseinrichtung</label>
+			<label index="partnerpage.new.formOfCompany">Unternehmensform</label>
+			<label index="partnerpage.new.businessArea">Geschäftsfeld / Branche</label>
+			<label index="partnerpage.new.numberOfEmployees">Anzahl Beschäftigte</label>
+			<label index="partnerpage.new.address">Adresse</label>
+			<label index="partnerpage.new.address.street">Straße und Hausnummer</label>
+			<label index="partnerpage.new.address.zip">Postleitzahl</label>
+			<label index="partnerpage.new.address.city">Ort</label>
+			<label index="partnerpage.new.address.country">Land</label>
+			<label index="partnerpage.new.contacts">Kontaktinformationen</label>
+			<label index="partnerpage.new.expertises">Expertisen</label>
+			<label index="partnerpage.new.services">Dienstleistungen / Geräte</label>
+			<label index="partnerpage.new.services.help">Angebotene Dienstleistungen und Gerätschaften (semikolon-getrennte Aufzählung)</label>
+			<label index="partnerpage.new.success.0">Die Beschreibung der Organisation</label>
+			<label index="partnerpage.new.success.1">wurde erfolgreich hinzugefügt.</label>
+			<label index="partnerpage.new.add">Hinzufügen</label>
+			<label index="partnerpage.new.back">Zurück zur Übersicht</label>
+			<label index="partnerpage.new.submit">Organisation hinzufügen</label>
+			<label index="partnerpage.new.superordinate">Name</label>
+			
+			<label index="partnerpage.new.errorexists.header">Die Organisation konnte nicht hinzugefügt werden! Es existiert bereits eine Organisation mit der ID</label>
+			<label index="partnerpage.new.errorexists.link">Zur Detailseite der vorhandenen Organisation</label>
+			<label index="partnerpage.new.errorexists.contact">Kontaktieren Sie uns bitte, um stattdessen der vorhandenen Organisationsbeschreibung zugeordnet zu werden.</label>
+			
+			<label index="partnerpage.edit.contact">Kontakt</label>
+			<label index="partnerpage.edit.contact.surname">Vorname</label>
+			<label index="partnerpage.edit.contact.familyname">Nachname</label>
+			<label index="partnerpage.edit.contact.title">Titel</label>
+			<label index="partnerpage.edit.contact.position">Position</label>
+			<label index="partnerpage.edit.contact.email">E-Mail</label>
+			<label index="partnerpage.edit.contact.phone">Telefon</label>
+			<label index="partnerpage.edit.contact.fax">Fax</label>
+			<label index="partnerpage.edit.contact.matClasses">Materialklassen</label>
+			<label index="partnerpage.edit.contact.matClasses.help">Materialklassen, für die dieser Kontakt der primäre Ansprechpartner ist (semikolon-getrennte Aufzählung).</label>
+			<label index="partnerpage.edit.expertise">Expertise</label>
+			<label index="partnerpage.edit.expertise.type">Art der Expertise</label>
+			<label index="partnerpage.edit.expertise.name">Bezeichnung</label>
+			<label index="partnerpage.edit.expertise.description">Beschreibung</label>
+			<label index="partnerpage.edit.expertise.purpose">Zweck / Ziel</label>
+			<label index="partnerpage.edit.expertise.quantities">Abnahmemenge</label>
+			<label index="partnerpage.edit.expertise.customization">Eingehen auf Kundenwünsche</label>
+			<label index="partnerpage.edit.expertise.matClasses">Materialklassen</label>
+			<label index="partnerpage.edit.expertise.matClasses.help">Materialklassen, auf die sich die Expertise bezieht (semikolon-getrennte Aufzählung).</label>
+			<label index="partnerpage.edit.expertise.regulations">Regularien</label>
+			<label index="partnerpage.edit.expertise.regulations.help">Regularien, auf die sich die Expertise bezieht bzw. die für diese Expertise relevant sind, z. B. beim Testen oder Herstellen von Materialien. Mehrfachauswahl ist mit gedrückter Strg-Taste möglich.</label>
+			<label index="partnerpage.edit.submit">Organisation speichern</label>
+			<label index="partnerpage.edit.unknownID">Eine Organisationsbeschreibung mit der gegebenen ID existiert nicht!</label>
+			<label index="partnerpage.edit.success.1">wurde erfolgreich gespeichert.</label>
+			
+            <label index="partnerpage.form.placeholder">Suchen Sie nach Firmen und Instituten</label>
+			
+			<label index="regulationspage.heading">Regularien</label>
+			<label index="regulationspage.text">Hier finden Sie eine Übersicht ausgewählter Regularien und die Möglichkeit mehr über diese zu erfahren. Zusätzlich können Sie sich Materialien anzeigen lassen, die entsprechend dieser Regularien zertifiziert sind.</label>
+			<label index="regulationspage.link">Zeige zugehörige Materialien</label>
+			
+			<label index="regulationspage.tags">Schlagworte</label>
+			<label index="regulationspage.region">Region</label>
+			
+			<label index="regulationspage.form.placeholder">Suchen Sie nach Regularien und Standards</label>
+			
+			<label index="extended Search">zur erweiterten Suche</label>
+			<label index="basic Search">zur einfachen Suche</label>
+
+			<label index="partnerpage.website">Webseite</label>
+			<label index="partnerpage.writeMail">Anfrage per E-Mail</label>
+			<label index="partnerpage.materialPage">Materialbeschreibung beim Hersteller</label>
+			<label index="partnerpage.partnerDetails">Mehr Details</label>
+			
+			<label index="email.add.header">Organisationsbeschreibung hinzugefügt</label>
+        	<label index="email.add.body">Nutzer %1$s hat die Organisationsbeschreibung von %2$s hinzugefügt.</label>
+        	<label index="email.edit.header">Organisationsbeschreibung bearbeitet</label>
+        	<label index="email.edit.body">Nutzer %1$s hat die Organisationsbeschreibung von %2$s bearbeitet.</label>
+        	<label index="email.fileremove.header">Datei gelöscht</label>
+        	<label index="email.fileremove.body">Nutzer %1$s hat die Datei '%2$s' entfernt.</label>
+        	<label index="email.fileadd.header">Datei hochgeladen</label>
+        	<label index="email.fileadd.body">Nutzer %1$s hat die Datei(en) '%2$s' hochgeladen.</label>
+        	
+            <label index="nofiles">Sie haben noch keine Dateien hochgeladen.</label>
+            <label index="nologin">Es ist kein Nutzer angemeldet.</label>
+            <label index="nocompany">Es wurde keine Organisation ausgewählt.</label>
+        	<label index="files">Ihre bisher hochgeladenen Dateien</label>
+        	<label index="file.name">Dateiname</label>
+        	<label index="removefile">Datei löschen</label>
+        	<label index="file.size">Größe</label>
+        	<label index="file.date">Datum</label>
+        	<label index="file.upload">Datei hochladen</label>
+        	<label index="file.upload.choose">Datei auswählen</label>
+        	<label index="file.upload.header">Dateien hochladen für Organisation</label>
+        	<label index="file.list.header">Dateiliste für Organisation</label>
+        	
+			<label index="newpartners.heading">Partner des Material Hub</label>			
+			<label index="newpartners.link">Zu den Materialien von</label>
+			<label index="newpartners.text1.random">Unten finden Sie eine zufällige Auswahl unserer Partner.</label>
+			<label index="newpartners.text1">Unten finden Sie unsere neuesten Partner.</label>
+			<label index="newpartners.showAll">Alternativ können Sie sich alle Partner anzeigen lassen.</label>
+        </languageKey>
+    </data>
+</T3locallang>

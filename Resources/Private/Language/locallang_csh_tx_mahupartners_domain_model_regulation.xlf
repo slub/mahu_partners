@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-08T09:17:01Z" product-name="mahu_partners">
+		<header/>
+		<body>
+			<trans-unit id="id.description">
+				<source>Unique ID of that regulation</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>The regulation name</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Textual description of that regulation.</source>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<source>The region or country where the regulation applies.</source>
+			</trans-unit>
+			<trans-unit id="tags.description">
+				<source>Tags that describe or classify that regulation (semicolon-separated enumeration). Used for matching.</source>
+			</trans-unit>
+			<trans-unit id="img_url.description">
+				<source>URL of an image or logo for that regulation.</source>
+			</trans-unit>
+			<trans-unit id="uri.description">
+				<source>URL of an offical document for that regulation</source>
+			</trans-unit>
+			<trans-unit id="facet_values.description">
+				<source>Defines the exact values for the facet 'cert_true' which correspond to this regulation.</source>
+			</trans-unit>
+			<trans-unit id="matching_expression.description">
+				<source>Defines which entries in the material property 'cert_name' are considered to refer to this regulation (string and regular expressions allowed).</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

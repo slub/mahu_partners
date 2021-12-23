@@ -1,0 +1,10 @@
+<f:render
+	partial="Formats/{f:if(
+		condition:arguments.data-format,
+		then:arguments.data-format,
+		else:'json'
+	)}"
+	arguments="{
+		results:suggestions
+	}"
+/>

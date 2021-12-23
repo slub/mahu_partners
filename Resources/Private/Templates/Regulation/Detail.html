@@ -1,0 +1,37 @@
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:layout name="Default"/>
+<f:comment>
+	Template for a basic Detail view of all fields in the document.
+
+	Sets up the page with its title, CSS, JavaScript, the search form and pager,
+	uses the field configured as a heading and creates
+	a definition list of all field contents.
+
+	This can be a good starting point for refining the detail view for your
+	data model.
+</f:comment>
+
+<f:section name="Main">
+	<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/AbstractPage.js" name="apage"/>
+	<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/RegulationsPage.js" name="rpage"/>
+	
+	<script>
+		$(document).ready(function(){
+			let page = new mahupartners.RegulationsPage();
+			page.render();
+			page.addListeners();
+		});
+	</script>
+	
+	<article class="detail partnerPageContent regulationPageContent">
+	
+		<f:render partial="Mahu/RegulationPage/DetailResultPager" arguments="{_all}"/>
+	
+		<f:if condition="{regulation}">
+			<f:render partial="Mahu/RegulationPage/Regulation" arguments="{regulation:regulation}"/>
+		</f:if>
+		
+	</article>
+
+</f:section>

@@ -1,0 +1,80 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:comment>
+	Creates a list item for document stored in the document variable.
+
+	It uses the standardFields configured in settings, result highlighting
+	(if configured) and a link to the document’s page.
+</f:comment>
+
+<li id="c{config.uid}-result-{partner.id}">
+	<article class="flexResultLine">
+		<div class="baseInfo">
+		<div class="matImage">
+		<f:if condition="{partner.logo}">
+			<f:then>
+			<img src="{partner.logo}" alt="Logo {partner.name}" onerror="mahu.handleImageError(arguments[0])"/>
+			</f:then>
+			<f:else>
+			<img src="/typo3conf/ext/mahu_partners/Resources/Public/Images/placeholder.png" alt="Logo {partner.name}" class="hidden"/>
+			</f:else>
+		</f:if>
+		</div>
+		<p style="margin:0">
+			<f:link.action
+				action="detail"
+				arguments="{id:partner.id}"
+				section="{settings.jumpToID}"
+				class="internal no-change" 
+				onclick="{f:if(
+					condition:'{settings.paging.detailPagePaging}',
+					then:'return mahupartners.AbstractPage.detailViewWithPaging(this);'
+				)}">
+				<span style="font-size: 133%;line-height: 133%;">{partner.name}</span>
+			</f:link.action>
+			<f:if condition="{isDivision}">(<f:link.action
+				action="detail"
+				arguments="{id:parent.id}"
+				section="{settings.jumpToID}"
+				class="internal no-change">
+				{parent.name}
+			</f:link.action>)</f:if>
+		</p>
+		<f:if condition="{partner.type}==2">
+			<f:if condition="{f:cObject(typoscriptObjectPath:'lib.currentLang')}=='de'">
+			<f:then>
+				<v:variable.set name="superName" value="{v:variable.get(name:'settings.researchInstitutes.de.{partner.superordinate}')}" />
+			</f:then>
+			<f:else>
+				<v:variable.set name="superName" value="{v:variable.get(name:'settings.researchInstitutes.en.{partner.superordinate}')}" />							
+			</f:else>
+			</f:if>
+			<p>{superName}</p>
+		</f:if>
+		</div>
+		<div style="order:2;flex-basis:40%">
+			<p><a href="{partner.www}" target="_blank" class="external"><i class="fas fa-external-link-alt smallicon" aria-hidden="true"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.website')}</a>
+			<f:if condition="{partner.facetValue}">
+			<span class="separator">|</span>
+			<s:data.newArray
+					name="linkArguments"
+					keys="{0: '{settings.prefix}[q]', 1:'{settings.prefix}[facet]'}"
+					values="{
+						0: { default : '*' },
+						1: '{m:GetLinkParameterForFacet(facet:partner.facet,facetValue:partner.facetValue)}'
+					}"
+					omitEmptyFields="1" >
+				<f:link.page 
+					pageUid="{settings.materialSearchPageID}"
+					additionalParams="{linkArguments}"
+					class="internal">
+					<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:showMaterialsOf"/> {partner.name}
+				</f:link.page>
+			</s:data.newArray>
+			</f:if>
+			</p>
+		</div>
+	</article>
+</li>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-08T09:17:01Z" product-name="mahu_partners">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>The division name</source>
+			</trans-unit>
+			<trans-unit id="id.description">
+				<source>Unique ID of that division</source>
+			</trans-unit>
+			<trans-unit id="type.description">
+				<source>Type of the division</source>
+			</trans-unit>
+			<trans-unit id="street.description">
+				<source>street</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>city</source>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<source>country</source>
+			</trans-unit>
+			<trans-unit id="www.description">
+				<source>URL of the division's website</source>
+			</trans-unit>
+			<trans-unit id="logo.description">
+				<source>URL of the division's logo file</source>
+			</trans-unit>
+			<trans-unit id="facet.description">
+				<source>Categorizes the division. Defines the facet used to list materials of that division.</source>
+			</trans-unit>
+			<trans-unit id="facet_value.description">
+				<source>The value of the facet stated above as declared in the material descriptors.</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Textual description of that division.</source>
+			</trans-unit>
+			<trans-unit id="disclaimer.description">
+				<source>The general disclaimer of that division.</source>
+			</trans-unit>
+			<trans-unit id="since.description">
+				<source>Date since when the company is partner of the Material Hub.</source>
+			</trans-unit>
+			<trans-unit id="services.description">
+				<source>Services provided by this company (semicolon-separated enumeration)</source>
+			</trans-unit>
+			<trans-unit id="contacts.description">
+				<source>Contacts of that division</source>
+			</trans-unit>
+			<trans-unit id="expertises.description">
+				<source>The division's expertises and skills</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,98 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace m=Slub\MahuPartners\ViewHelpers}
+
+<f:layout name="Default"/>
+<f:comment>
+	The main view with a table of all files in the folder of the currently logged in user.
+</f:comment>
+<f:section name="Main">
+
+<f:if condition="{company}"><f:then>
+<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/AbstractPage.js" name="mpapage"/>
+<m:script file="EXT:mahu_partners/Resources/Public/JavaScript/pages/FilePage.js" name="mpppage"/>
+
+<script>
+	$(document).ready(function(){
+		let page = new mahupartners.FilePage();
+		page.render();
+		page.addListeners();
+	});
+</script>
+
+<h3>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.upload.header')} <q>{company.name}</q></h3>
+
+<f:form name="c{config.uid}-form"
+	method="post"
+	controller="File"
+	action="add"
+	enctype="multipart/form-data"
+	absolute="1"
+	class="editform fileuploadform">
+
+	<input type="hidden" name="tx_mahupartners_mahupartners[company]" value="{company.id}" />
+	
+    <input type="hidden" name="MAX_FILE_SIZE" value="4096000" />
+	<label for="c{config.uid}-form-file">{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.upload.choose')}</label>
+	<input id="c{config.uid}-form-file" name="newfile" type="file" required="required" accept=".csv,.xlsx,.xml,.json,.zip,.rar,.7zip,.gz,.jpg,.png,.gif,.pdf" /></p> 
+
+	<f:form.submit name="mySubmit" value="{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.upload')}" class="btn btn-primary"/>
+
+</f:form>
+
+<h3>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.list.header')} <q>{company.name}</q></h3>
+
+<div class="companyfiles">
+<f:if condition="{files}">
+<f:then>
+	{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:files')}
+	<div>
+	<table class="propertiesTable">
+    <thead>
+        <tr>
+            <th>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.name')}</th>
+            <th>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.size')}</th>
+            <th>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:file.date')}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <f:for each="{files}" as="file">
+            <tr>
+			    <td>
+			        <f:link.typolink parameter="{file.publicUrl}">
+			            <f:if condition="{file.properties.title}">
+			                <f:then>{file.properties.title}</f:then>
+			                <f:else>{file.name}</f:else>
+			            </f:if>
+			        </f:link.typolink>
+			    </td>
+			    <td>{file.properties.size -> f:format.bytes()}</td>
+			    <td>
+			        <f:format.date format="{settings.dateFormat}">@{file.properties.modification_date}</f:format.date>
+			    </td>
+			    <td>
+			    	<f:link.action action="remove" arguments="{file:file.name,company:company.id}" class="remove">
+						<i class="fas fa-trash-alt smallicon"></i>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:removefile')}
+					</f:link.action>
+			    </td>
+			</tr>
+        </f:for>
+    </tbody>
+</table>
+</div>
+</f:then>
+<f:else>
+	<f:if condition="{nologin}"><f:then>
+	{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:nologin')}
+	</f:then><f:else>
+	{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:nofiles')}
+	</f:else></f:if>
+</f:else>
+</f:if>
+
+</div>
+
+</f:then><f:else>
+{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:nocompany')}
+</f:else></f:if>
+</f:section>

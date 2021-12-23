@@ -1,0 +1,29 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+{namespace m=Slub\MahuFrontend\ViewHelpers}
+
+<f:comment>
+	Renders a message if no results have been found for the current query.
+</f:comment>
+
+<div class="noresultsMessage">
+	<h3>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:noresults.heading')}</h3>
+	{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:noresults.1')}
+	<ul>
+		<s:data.newArray
+				name="linkArguments"
+				keys="{0: 'q'}"
+				values="{
+					0: { name : '*' }
+				}"
+				omitEmptyFields="1" >
+		<li>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:noresults.2')}
+			<f:link.action
+				action="index"
+				arguments="{linkArguments}"
+				pageUid="{pageuid}"
+				class="internal" >
+				<f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:noresults.2.1"/>
+			</f:link.action></li>
+		</s:data.newArray>
+	</ul>
+</div>

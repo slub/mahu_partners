@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-08T09:17:01Z" product-name="mahu_partners">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>The name of the social network account.</source>
+			</trans-unit>
+			<trans-unit id="url.description">
+				<source>The URL of the account.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

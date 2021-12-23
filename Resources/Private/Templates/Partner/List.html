@@ -1,0 +1,135 @@
+{namespace s=Subugoe\Find\ViewHelpers}
+
+<f:layout name="Default"/>
+<f:comment>
+	Template for a basic Detail view of all fields in the document.
+
+	Sets up the page with its title, CSS, JavaScript, the search form and pager,
+	uses the field configured as a heading and creates
+	a definition list of all field contents.
+
+	This can be a good starting point for refining the detail view for your
+	data model.
+</f:comment>
+
+<f:section name="Main">
+
+<div class="partnerPageContent">
+	
+	<p><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.main"/></p>
+	
+	<f:if condition="{noresults}"><f:then>
+	<p><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.noorgas"/></p>
+	</f:then><f:else>
+	<table class="propertiesTable orgaDescTable">
+    <thead>
+        <tr>
+            <th><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.tableheader.org"/></th>
+            <th><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.tableheader.act"/></th>
+        </tr>
+    </thead>
+    <tbody>
+	<f:for each="{results}" as="company"  iteration="iter">
+		<tr><td><b>{company.name}</b><f:if condition="{company.hidden}"><span class="disabled" style="margin:0 5px"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.inactive"/></span></f:if></td>
+
+		<td>
+		<f:link.action
+			pageUid="{settings.orgaDescriptionPageID}"
+			action="edit"
+			class="action"
+			additionalParams="{L:'{f:cObject(typoscriptObjectPath:\'lib.currentLangID\')}'}"
+			arguments="{id:company.id}">
+			<i class="fas fa-pen smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.edit"/>
+		</f:link.action>
+		
+		<f:if condition="{company.hidden}"><f:then>
+			<s:data.newArray
+				name="linkArguments"
+				keys="{0: 'tx_mahupartners_mahupartners[id]', 1:'tx_mahupartners_mahupartners[action]',2:'tx_mahupartners_mahupartners[controller]',3:'L'}"
+				values="{
+					0: '{company.id}',
+					1: 'preview',
+					2: 'Partner',
+					3: '{f:cObject(typoscriptObjectPath:\'lib.currentLangID\')}'
+				}"
+				omitEmptyFields="1" >
+			<f:link.page
+				class="action" 
+				pageUid="{settings.orgaDescriptionPreviewPageID}"
+				additionalParams="{linkArguments}">
+				<i class="fas fa-search smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.preview"/>
+			</f:link.page>
+		</s:data.newArray>
+			
+		</f:then><f:else>
+		<s:data.newArray
+				name="linkArguments"
+				keys="{0: 'tx_mahupartners_mahupartners[id]', 1:'tx_mahupartners_mahupartners[action]',2:'tx_mahupartners_mahupartners[controller]',3:'L'}"
+				values="{
+					0: '{company.id}',
+					1: 'detail',
+					2: 'Partner',
+					3: '{f:cObject(typoscriptObjectPath:\'lib.currentLangID\')}'
+				}"
+				omitEmptyFields="1" >
+			<f:link.page
+				class="action" 
+				pageUid="{settings.partnerSearchPageID}"
+				additionalParams="{linkArguments}">
+				<i class="fas fa-search smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.view"/>
+			</f:link.page>
+		</s:data.newArray>
+		</f:else></f:if>
+
+		<s:data.newArray
+				name="linkArguments"
+				keys="{0: 'tx_mahupartners_mahupartners[company]', 1:'tx_mahupartners_mahupartners[action]',2:'tx_mahupartners_mahupartners[controller]'}"
+				values="{
+					0: '{company.id}',
+					1: 'index',
+					2: 'File'
+				}"
+				omitEmptyFields="1" >
+			<f:link.page 
+				class="action"
+				pageUid="{settings.uploadPageID}"
+				additionalParams="{linkArguments}">				
+				<i class="fas fa-cloud-upload-alt smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.upload"/>
+			</f:link.page>
+		</s:data.newArray>
+
+		<f:if condition="{settings.materialEditorPageID}">
+		<s:data.newArray
+				name="linkArguments"
+				keys="{0: 'tx_mahufrontend_materialeditor[company]', 1:'tx_mahufrontend_supplementeditor[company]'}"
+				values="{
+					0: '{company.id}',
+					1: '{company.id}'
+				}"
+				omitEmptyFields="1" >
+			<f:link.page 
+				class="action"
+				pageUid="{settings.materialEditorPageID}"
+				additionalParams="{linkArguments}">				
+				<i class="fas fa-list-alt smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.create"/>
+			</f:link.page>
+		</s:data.newArray>
+		</f:if>
+		
+		</td>
+		</tr>
+	</f:for>
+	</tbody>
+	</table>
+	</f:else></f:if>
+	
+	<f:link.action
+		pageUid="{settings.orgaDescriptionPageID}"
+		additionalParams="{L:'{f:cObject(typoscriptObjectPath:\'lib.currentLangID\')}'}"
+		action="new">
+		<i class="fas fa-plus-circle smallicon"></i><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.list.actions.new"/>
+	</f:link.action>
+	
+</div>
+
+</f:section>

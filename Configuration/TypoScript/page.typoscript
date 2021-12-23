@@ -1,0 +1,54 @@
+##
+## Page configuration
+##
+
+page = PAGE
+page {
+    config {
+        metaCharset = utf-8
+        additionalHeaders = Content-Type:text/html;charset=utf-8
+        baseURL = /
+    	defaultGetVars {
+        	L = 1
+    	}
+	    linkVars = L
+    }
+    shortcutIcon = EXT:mahu_partners/Resources/Public/Images/mahuIcon.png
+    
+    10 = FLUIDTEMPLATE
+    10 {
+        template = FILE
+        template.file = EXT:mahu_partners/Resources/Private/Templates/Default.html
+        
+        templateRootPaths {
+        	10 = EXT:mahu_partners/Resources/Private/Templates
+        }
+        layoutRootPaths {
+            10 = EXT:mahu_partners/Resources/Private/Layouts
+        }
+        partialRootPaths {
+            10 = EXT:mahu_partners/Resources/Private/Partials
+        }
+        variables {
+            content < styles.content.get
+            content.select.where = colPos = 0
+        }
+    }
+    
+    # web fonts
+    includeCSS.qstw = https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web:700&display=swap
+    includeCSS.qstw.external = 1
+    includeCSS.qstw.excludeFromConcatenation = 1
+
+	# CSS
+    includeCSS.bootstrap = EXT:mahu_partners/Resources/Public/Css/bootstrap-3.3.7/css/bootstrap.min.css
+    includeCSS.fontsawesome = https://use.fontawesome.com/releases/v5.7.2/css/all.css
+    includeCSS.fontsawesome.external = 1
+    includeCSS.fontsawesome.excludeFromConcatenation = 1
+	includeCSS.mahustyles = EXT:mahu_partners/Resources/Public/Css/Styles.css
+    
+    # JavaScript
+	includeJS.jquery = EXT:mahu_partners/Resources/Public/JavaScript/libs/jquery-3.4.1.min.js
+    includeJS.mahu = EXT:mahu_partners/Resources/Public/JavaScript/mahu.js
+	includeJS.apage = EXT:mahu_partners/Resources/Public/JavaScript/pages/AbstractPage.js
+}

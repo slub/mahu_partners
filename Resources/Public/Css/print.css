@@ -1,0 +1,8 @@
+a[href]:after {
+	display: none;
+	visibility: hidden;
+}
+
+.tx_find .results .navigation {
+	border-bottom: none !important;
+}

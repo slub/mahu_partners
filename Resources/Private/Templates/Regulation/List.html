@@ -1,0 +1,26 @@
+<f:layout name="Default"/>
+<f:comment>
+	Template for a basic Detail view of all fields in the document.
+
+	Sets up the page with its title, CSS, JavaScript, the search form and pager,
+	uses the field configured as a heading and creates
+	a definition list of all field contents.
+
+	This can be a good starting point for refining the detail view for your
+	data model.
+</f:comment>
+
+<f:section name="Main">
+
+<div class="partnerPageContent">
+	<h2>{f:translate(key:'LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.heading')}</h2>
+	
+	<p class="welcomeMessage"><f:translate key="LLL:EXT:mahu_partners/Resources/Private/Language/locallang.xml:partnerpage.text" arguments="{0: '{f:count(subject:comps)}'}"/></p>
+	
+	<f:for each="{results}" as="company"  iteration="iter">
+		<f:render partial="Mahu/PartnerPage/Partner" arguments="{ partner : company }"/>
+	</f:for>
+
+</div>
+
+</f:section>
